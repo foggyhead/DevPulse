@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Custom Properties ───────────────────────────────────────── */
+:root {
+  --bg-primary: #121212;
+  --bg-surface: #1a1a1a;
+  --lavender: #e6e6fa;
+  --lavender-muted: #9d8fcd;
+  --lavender-dim: #c4c4e8;
+  --text-primary: #f0f0f0;
+  --text-secondary: #6b6b8a;
+  --border: rgba(230, 230, 250, 0.08);
+  --border-hover: rgba(230, 230, 250, 0.14);
+}
+
+/* ── Base Reset ──────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #121212;
+  color: #f0f0f0;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Selection ───────────────────────────────────────────────── */
+::selection {
+  background-color: rgba(157, 143, 205, 0.25);
+  color: #e6e6fa;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(230, 230, 250, 0.1);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(230, 230, 250, 0.18);
+}
+
+/* ── Glassmorphism Utilities ─────────────────────────────────── */
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(230, 230, 250, 0.08);
+  }
+
+  .glass-hover {
+    @apply glass transition-all duration-300;
+  }
+  .glass-hover:hover {
+    background: rgba(255, 255, 255, 0.055);
+    border-color: rgba(230, 230, 250, 0.13);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3), 0 0 24px rgba(157, 143, 205, 0.06);
+  }
+
+  .glass-card {
+    @apply glass rounded-2xl;
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(230, 230, 250, 0.06);
+  }
+
+  /* Shimmer skeleton animation */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      rgba(230, 230, 250, 0.03) 0%,
+      rgba(230, 230, 250, 0.07) 50%,
+      rgba(230, 230, 250, 0.03) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2.2s infinite linear;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #f0f0f0 0%, #e6e6fa 40%, #9d8fcd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-vivid {
+    background: linear-gradient(135deg, #ffffff 0%, #e6e6fa 35%, #b8aedc 70%, #9d8fcd 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 6s ease infinite;
+  }
+
+  /* Bento tile base */
+  .bento-tile {
+    @apply glass-card overflow-hidden relative;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .bento-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5),
+      0 0 32px rgba(157, 143, 205, 0.08),
+      inset 0 1px 0 rgba(230, 230, 250, 0.1);
+    border-color: rgba(230, 230, 250, 0.12);
+  }
+
+  /* Subtle noise texture overlay */
+  .noise-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: inherit;
+    opacity: 0.4;
+  }
+}
+
+/* ── Focus Styles ────────────────────────────────────────────── */
+:focus-visible {
+  outline: 1.5px solid rgba(230, 230, 250, 0.3);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
