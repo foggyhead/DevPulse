@@ -4,9 +4,6 @@
 
 DevPulse is a full-stack analytics dashboard that transforms raw GitHub data into meaningful developer insights — commit rhythms, language DNA, PR velocity, and technical debt signals — presented in a minimal, high-end interface.
 
-![DevPulse Landing](https://i.imgur.com/placeholder.png)
-
----
 
 ## What it does
 
@@ -175,7 +172,7 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 
 ## Author
 
-Built by **Harsha** — [GitHub](https://github.com/your-username)
+Built by **Harsha** — [GitHub](https://github.com/foggyhead)
 
 ---
 
